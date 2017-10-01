@@ -1,0 +1,68 @@
+// Space Cowboy Simulator 2k18.cpp : Defines the entry point for the console application.
+//
+
+#include "stdafx.h"
+#include <iostream>
+#include <ctime>
+#include <cstdlib>
+
+using namespace std;
+
+class Planet
+{
+public:
+	Planet();
+	virtual char GetType();
+protected:
+	char m_Type = ' ';
+};
+
+Planet::Planet()
+{
+	int randomNumber = rand();
+	int planetType = (randomNumber % 10) + 1;
+	switch (planetType)
+	{
+	case 1:
+		m_Type = 'A';
+	case 2:
+		m_Type = 'B';
+	case 3:
+		m_Type = 'C';
+	case 4:
+		m_Type = 'D';
+	case 5:
+		m_Type = 'E';
+	default:
+		m_Type = ' ';
+	}
+}	
+
+char Planet::GetType()
+{
+	return m_Type;
+}
+
+ostream& operator<<(ostream& os, Planet& aPlanet)
+{
+	os << aPlanet.GetType();
+	return os;
+}
+
+
+int main()
+{
+	cout << "Welcome to Space Cowboy Simulator 2K18!\n\n";
+	srand(static_cast<unsigned int>(time(0)));
+	Planet map[30][30];
+	for (int x = 0; x < 30; x++)
+	{
+		for (int y = 0; y < 30; y++)
+		{
+			cout << map[x][y];
+		}
+		cout << endl;
+	}
+    return 0;
+}
+
